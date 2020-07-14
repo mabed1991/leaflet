@@ -1,0 +1,38 @@
+---
+title: "African Capitals"
+author: "Mohamed Abed"
+date: "7/14/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This project is an example of leaflet interactive maps in R.  
+
+Project shows capitals of African coutries in an interactive way.  
+Data used in preoject obtained from this [kaggle link](https://www.kaggle.com/nikitagrec/world-capitals-gps/data) 
+
+## Getting and Arranging Data
+```{r message=FALSE, warning=FALSE}
+
+library(leaflet)
+library(dplyr)
+
+data<-read.csv("datasets_114457_273211_concap.csv")
+Africa<-data %>% filter(ContinentName=="Africa")
+head(Africa[,-6])
+```
+
+
+
+
+## Leaflet Map
+```{r }
+my_map <- Africa %>% leaflet() %>% addTiles() %>% addMarkers(lng=Africa$CapitalLongitude, lat=Africa$CapitalLatitude, popup=Africa$CapitalName)
+
+my_map
+```
+
+
