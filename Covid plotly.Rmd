@@ -1,0 +1,48 @@
+---
+title: "Covid Plotly - Egypt"
+author: "Mohamed Abed"
+date: "7/21/2020"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Intro
+
+- This presentation shows a graph of COVID data for Egypt with plot-ly.
+
+- Data obtained from this [kaggle link.](https://www.kaggle.com/sudalairajkumar/novel-corona-virus-2019-dataset?select=covid_19_data.csv)  
+
+## Code
+
+```{r message=FALSE, warning=FALSE, echo=FALSE}
+library(plotly)
+```
+
+```{r echo=TRUE, eval= FALSE}
+# obtain data
+data=read.csv("covid_19_data.csv")
+data= data[data$Country.Region=='Egypt',]
+# plot with plot_ly
+fig<- plot_ly(data, x = ~ObservationDate, y = ~Confirmed,                     mode = "markers")
+# using log scale for Y-axis
+fig <- layout(fig,  yaxis = list(type = "log"))
+
+fig
+```
+
+## Plot
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# obtain data
+data=read.csv("covid_19_data.csv")
+data= data[data$Country.Region=='Egypt',]
+# plot with plot_ly
+fig<- plot_ly(data, x = ~ObservationDate, y = ~Confirmed,                     mode = "markers")
+# using log scale for Y-axis
+fig <- layout(fig,  yaxis = list(type = "log"))
+
+fig
+```
